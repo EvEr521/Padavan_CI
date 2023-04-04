@@ -56,12 +56,11 @@ on:
         description: 'whether to upload firmware to wetransfer'
         default: 'false'
 env:
-  REPOSITORY_URL: https://github.com/EvEr521/XY-C1-.git
   WORK_PATH: /opt/rt-n56u
   TIME_ZONE: Asia/Shanghai
   FIRMWARE_DATEPREFIX: $(date +"%Y%m%d")
   FIRMWARE_AUTHOR: EvEr520
-  FIRMWARE_PATH: /opt/firmwares
+  FIRMWARE_PATH: /opt/images
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -81,8 +80,10 @@ jobs:
         sudo timedatectl set-timezone "$TIME_ZONE"
     - name: Clone source code
       run: |
-        git clone --depth=1 $REPOSITORY_URL $WORK_PATH
-        cd $WORK_PATH/toolchain-mipsel
+        git clone --depth=1 https://github.com/EvEr521/XY-C1-.git /opt/rt-n56u
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh
+        mkdir -p /opt/images/
     - name: Set golang
       run: |
         cp -f bashScripts/go.sh $(pwd)
