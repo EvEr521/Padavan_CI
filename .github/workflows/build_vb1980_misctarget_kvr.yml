@@ -57,7 +57,6 @@ on:
         default: 'false'
 env:
   REPOSITORY_URL: https://github.com/EvEr521/XY-C1-.git
-  TOOLCHAIN_URL: https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
   WORK_PATH: /opt/rt-n56u
   TIME_ZONE: Asia/Shanghai
   FIRMWARE_DATEPREFIX: $(date +"%Y%m%d")
@@ -84,9 +83,6 @@ jobs:
       run: |
         git clone --depth=1 $REPOSITORY_URL $WORK_PATH
         cd $WORK_PATH/toolchain-mipsel
-        mkdir -p toolchain-3.4.x
-        wget $TOOLCHAIN_URL
-        tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
     - name: Set golang
       run: |
         cp -f bashScripts/go.sh $(pwd)
