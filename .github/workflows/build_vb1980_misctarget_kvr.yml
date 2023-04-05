@@ -82,7 +82,7 @@ jobs:
       run: |
         git clone --depth=1 https://github.com/EvEr521/XY-C1-.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
-        sh dl_toolchain.sh
+        sh build_toolchain.sh
         mkdir -p /opt/images/
     - name: Set golang
       run: |
